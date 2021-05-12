@@ -68,10 +68,110 @@
                     <arguments>
                         <argument>clone</argument>
                         <argument>https://github.com/mhettiarac/LoginApplication.git</argument>
-<!--                        <argument>https://<username>:<password>@github.com/mhettiarac/LoginApplication.git</argument>-->
+                        <!--                        <argument>https://<username>:<password>@github.com/mhettiarac/LoginApplication.git</argument>-->
                         <argument>AppSources/LoginApplication</argument>
                     </arguments>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.helmetsrequired</groupId>
+                <artifactId>jacocotogo-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <id>get_integration_test_coverage</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>batch</goal>
+                        </goals>
+                        <configuration>
+
+                            <!-- global parameters, apply to all sources -->
+
+                            <!-- will not fail the build if data can not be retrieved from server(s).
+                                This parameter is optional and defaults to 'false'. -->
+                            <failOnError>false</failOnError>
+
+                            <!-- create a merged file with data from all sources.
+                                This parameter is optional and defaults to 'false'. -->
+                            <merge>true</merge>
+
+                            <!-- the path specified below is the default location and may be omitted -->
+                            <mergeFile>${project.build.directory}/jacocotogo/merged.exec</mergeFile>
+
+                            <!-- end global parameters -->
+
+                            <!-- a list of locations from which JaCoCo execution data should be retrieved -->
+                            <sources>
+
+                                <!-- this source will fetch via TCP. -->
+<!--                                <source>-->
+
+<!--                                    &lt;!&ndash; tcp or jmx to specify how data should be retrieved.-->
+<!--                                        Not required when 'serviceURL' is set....  See example below. &ndash;&gt;-->
+<!--                                    <type>tcp</type>-->
+
+<!--                                    &lt;!&ndash; the hostname where the remote JVM is located.-->
+<!--                                        Not required when 'serviceURL' is set.... See example below.  &ndash;&gt;-->
+<!--                                    <hostname>myserver.mydomain.com</hostname>-->
+
+<!--                                    &lt;!&ndash; port from which JaCoCo execution data can be retrieved.  Either via-->
+<!--                                        tcp or via jmx &ndash;&gt;-->
+<!--                                    <port>12345</port>-->
+
+<!--                                    &lt;!&ndash; optional specification of where JaCoCo execution data will be written.-->
+<!--                                        Defaults to '${project.build.directory}/jacocotogo/jacoco[n].exec' where-->
+<!--                                        [n] is an integer representing the index of the 'source' &ndash;&gt;-->
+<!--                                    <outputFile>${project.build.directory}/jacocotogo/myserver_jacoco.exec</outputFile>-->
+
+<!--                                    &lt;!&ndash; optional parameter specifying whether JaCoCo coverage statistics should be-->
+<!--                                        reset after data is fetched.  Defaults to true &ndash;&gt;-->
+<!--                                    <resetAfterFetch>true</resetAfterFetch>-->
+
+<!--                                </source>-->
+
+
+<!--                                &lt;!&ndash; this source is identical to above, but specified using serviceURL &ndash;&gt;-->
+<!--                                <source>-->
+<!--                                    <serviceURL>tcp://myserver.mydomain.com:12345</serviceURL>-->
+<!--                                    <outputFile>${project.build.directory}/jacocotogo/myserver_jacoco.exec</outputFile>-->
+<!--                                    <resetAfterFetch>true</resetAfterFetch>-->
+<!--                                </source>-->
+
+                                <!-- this source will fetch via JMX -->
+                                <source>
+                                    <type>jmx</type>
+<!--                                    <hostname>myserver.mydomain.com</hostname>-->
+                                    <hostname>localhost</hostname>
+                                    <port>9999</port>
+                                    <outputFile>${project.build.directory}/jacocotogo/myserver_jacoco.exec</outputFile>
+                                    <resetAfterFetch>false</resetAfterFetch>
+
+                                    <!-- username to use to authenticate with JMX server.  Only required
+                                        if JMX authentication is enabled. -->
+<!--                                    <username>myuser</username>-->
+
+                                    <!-- password to use to authenticate with JMX server.  Only required
+                                        if JMX authentication is enabled. -->
+<!--                                    <password>mypassword</password>-->
+
+                                </source>
+
+<!--                                &lt;!&ndash; this source is identical to above, but specified using serviceURL &ndash;&gt;-->
+<!--                                <source>-->
+<!--                                    <serviceURL>service:jmx:rmi:///jndi/rmi://myserver.mydomain.com:12345/jmxrmi-->
+<!--                                    </serviceURL>-->
+<!--                                    <outputFile>${project.build.directory}/jacocotogo/myserver_jacoco.exec</outputFile>-->
+<!--                                    <resetAfterFetch>false</resetAfterFetch>-->
+<!--                                    <username>myuser</username>-->
+<!--                                    <password>mypassword</password>-->
+<!--                                </source>-->
+
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
