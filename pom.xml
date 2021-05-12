@@ -61,17 +61,33 @@
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <configuration>
+                            <executable>git</executable>
+                            <arguments>
+                                <argument>clone</argument>
+                                <argument>https://github.com/mhettiarac/LoginApplication.git</argument>
+                                <!--                        <argument>https://<username>:<password>@github.com/mhettiarac/LoginApplication.git</argument>-->
+                                <argument>AppSources/LoginApplication</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <phase>initialize</phase>
+                        <id>build_src_generate_class_files</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>mvn</executable>
+                            <arguments>
+                                <argument>clean</argument>
+                                <argument>compile</argument>
+                                <argument>-f</argument>
+                                <argument>AppSources/LoginApplication</argument>
+                            </arguments>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <executable>git</executable>
-                    <arguments>
-                        <argument>clone</argument>
-                        <argument>https://github.com/mhettiarac/LoginApplication.git</argument>
-                        <!--                        <argument>https://<username>:<password>@github.com/mhettiarac/LoginApplication.git</argument>-->
-                        <argument>AppSources/LoginApplication</argument>
-                    </arguments>
-                </configuration>
             </plugin>
 
             <plugin>
