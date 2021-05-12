@@ -24,7 +24,7 @@ public class APITest {
         Map<String,String> loginPayload = new HashMap<String,String>();
         loginPayload.put("username","test");
         loginPayload.put("password","test");
-        given().contentType("application/json").body(loginPayload).when().post("http://localhost:8081/login/user").then().statusCode(200).log()
+        given().contentType("application/json").body(loginPayload).when().post("http://localhost:8081/login/user").then().statusCode(401).log()
                 .all();
     }
 }
