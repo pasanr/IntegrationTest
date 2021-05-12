@@ -140,13 +140,13 @@
 <!--                                </source>-->
 
                                 <!-- this source will fetch via JMX -->
-                                <source>
-                                    <type>jmx</type>
-<!--                                    <hostname>myserver.mydomain.com</hostname>-->
-                                    <hostname>localhost</hostname>
-                                    <port>9999</port>
-                                    <outputFile>${project.build.directory}/jacocotogo/myserver_jacoco.exec</outputFile>
-                                    <resetAfterFetch>false</resetAfterFetch>
+<!--                                <source>-->
+<!--                                    <type>jmx</type>-->
+<!--&lt;!&ndash;                                    <hostname>myserver.mydomain.com</hostname>&ndash;&gt;-->
+<!--                                    <hostname>localhost</hostname>-->
+<!--                                    <port>9999</port>-->
+<!--                                    <outputFile>${project.build.directory}/jacocotogo/myserver_jacoco.exec</outputFile>-->
+<!--                                    <resetAfterFetch>false</resetAfterFetch>-->
 
                                     <!-- username to use to authenticate with JMX server.  Only required
                                         if JMX authentication is enabled. -->
@@ -156,17 +156,18 @@
                                         if JMX authentication is enabled. -->
 <!--                                    <password>mypassword</password>-->
 
-                                </source>
+<!--                                </source>-->
 
-<!--                                &lt;!&ndash; this source is identical to above, but specified using serviceURL &ndash;&gt;-->
-<!--                                <source>-->
+                                <!-- this source is identical to above, but specified using serviceURL -->
+                                <source>
 <!--                                    <serviceURL>service:jmx:rmi:///jndi/rmi://myserver.mydomain.com:12345/jmxrmi-->
-<!--                                    </serviceURL>-->
-<!--                                    <outputFile>${project.build.directory}/jacocotogo/myserver_jacoco.exec</outputFile>-->
-<!--                                    <resetAfterFetch>false</resetAfterFetch>-->
+                                    <serviceURL>service:jmx:rmi:///jndi/rmi://localhost:9999/jmxrmi
+                                    </serviceURL>
+                                    <outputFile>${project.build.directory}/jacocotogo/myserver_jacoco.exec</outputFile>
+                                    <resetAfterFetch>false</resetAfterFetch>
 <!--                                    <username>myuser</username>-->
 <!--                                    <password>mypassword</password>-->
-<!--                                </source>-->
+                                </source>
 
                             </sources>
                         </configuration>
